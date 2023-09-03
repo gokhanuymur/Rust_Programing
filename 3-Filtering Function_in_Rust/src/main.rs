@@ -1,15 +1,15 @@
-struct FilterCondition<T>{
+struct FilterCondition<T>{ // t ile veri tipinin değişken olabileceğini belirtiyoruz i32, i16 gibi. sabit bir veri tipi ile çalışmış olmuyoruz.
     filter : T
 }
 
-impl <T: PartialOrd> FilterCondition<T> {
-    fn is_match (&self, item: &T) -> bool {
+impl <T: PartialOrd> FilterCondition<T> { 
+    fn is_match (&self, item: &T) -> bool { // karşılaştırma yapıyoruz.
         item > &self.filter
     }
 }
 
 fn custom_filter<T>(list: Vec<T> , condition: &FilterCondition<T>) -> Vec<T> where T: PartialOrd{
-    return list.into_iter().filter(|item: &T| condition.is_match(item)).collect();
+    list.into_iter().filter(|item: &T| condition.is_match(item)).collect() // listenin içinde geziyoruz.filtreliyoruz.her bir item için kontrol ediyoruz.
 }
 
 fn main() {
